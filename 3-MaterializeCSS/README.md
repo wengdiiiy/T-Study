@@ -5,7 +5,7 @@ Materialize css 프레임워크를 사용하여 홈페이지 만들기
 
 http://codepen.io/wengdiiiy/pen/MYMoWG
 <br>
-https://rawgit.com/wengdiiiy/Home-Materialize-css/master/home.html
+https://rawgit.com/wengdiiiy/T-Study/tree/master/3-MaterializeCSS
 
 ![홈페이지](https://github.com/wengdiiiy/Home-Materialize-css/raw/master/resultScreenshot.png "홈페이지")
 
