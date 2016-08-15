@@ -4,17 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * [초급문제]
- * 주어진 지도에서 떨어진 폭탄으로 커버되지 않는 지역은 몇 개인지를 구하라.
- * 
- * 각 타입마다 커버하는 범위가 다르다.
- * ex) A형 폭탄은 1칸, B형 폭탄은 2칸, C형 폭탄은 3칸
- *
- * @author anjeongmin
- * 
- */
-public class MatrixTest {
+public class ChessTest {
 	private static MatrixManager matrixManager = new MatrixManager();
 	private static List<String> bombList = new ArrayList<String>();
 	private static String[][] matrix;
@@ -28,7 +18,7 @@ public class MatrixTest {
 		Scanner scanner = new Scanner("7");
 		String size = scanner.next();
 		
-		Scanner scanner2 = new Scanner("0 0 1 5 3 5 5 6, 1 1 2 4 5 2, 3 2 5 5");
+		Scanner scanner2 = new Scanner("0 0 1 5 5 6, 2 4 5 2, 3 2 5 5");
 		String content = "";
 		while(scanner2.hasNext()){
 			content += scanner2.next();
@@ -95,50 +85,38 @@ public class MatrixTest {
 	
 	private static void fill(Integer range, Integer x, Integer y){
 		Integer size = matrixManager.getSize();
-		Integer left = y - range;
-		Integer right = y + range;
-		Integer top = x - range;
-		Integer bottom = x + range;
+
+		Integer minX = (x - range) < 0 ? 0 : (x - range);
+		Integer minY = (y - range) < 0 ? 0 : (y - range);
+		Integer maxX = (x + range) > size ? size : (x + range);
+		Integer maxY = (y + range) > size ? size : (y + range);
 		
-		for(int i = left; i <= right; i++){
-			if(i >= 0 && i < size && !bombList.contains(matrix[x][i])){
-				matrix[x][i] = "1";
-			}
+		//상하
+		for(int i = minX; i <= maxX; i++){
+			setValue(i, y);
 		}
 		
-		for(int i = top; i <= bottom; i++){
-			if(i >= 0 && i < size && !bombList.contains(matrix[x][i])){
-				matrix[i][y] = "1";
-			}
+		//좌우
+		for(int i = minY; i <= maxY; i++){
+			setValue(x, i);
 		}
+		
+		//왼대각선
+		
+		for(int i = -1 * range; i <= range; i++){
+			setValue(x + i, y + i);
+			setValue(x + i, y - i);
+		}
+		
 	}
-}
-
-
-class MatrixManager{
-	private int size;
 	
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	/**
-	 * Matrix를 size * size 크기로 만들고, 0으로 초기화 하여 반환한다.
-	 * @return
-	 */
-	public String[][] makeMatrix(){
-		String tempMatrix[][] = new String[size][size];
-		
-		for(int i = 0; i < tempMatrix.length; i++){
-			for(int j = 0; j < tempMatrix[i].length; j++){
-				tempMatrix[i][j] = "0";
-			}
+	private static void setValue(int x, int y){
+		Integer size = matrixManager.getSize() - 1;
+		if(x < 0 || x > size || y < 0 || y > size){
+			return ;
+		}else if(!bombList.contains(matrix[x][y])){
+			matrix[x][y] = "1";
 		}
-		
-		return tempMatrix;
 	}
+	
 }
