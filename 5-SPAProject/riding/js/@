@@ -1,0 +1,11 @@
+(function($){
+	var BookModel = Backbone.Model.extend({
+		defaults:{
+			coverImage:"img/my_cycle.png",
+			title:"대회사진",
+			rider:"Y.S",
+			ridingDate:"2015",
+			keywords:"대관령 힐크라이밍 대회"
+		}
+	});
+})(jQuery);

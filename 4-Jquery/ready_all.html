@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).on("load", function() {
+            console.log("[1] 페이지, 문서가 전부 로드된 시점에 실행된다.");
+        });
+
+        $(window).on({load: function() {
+            console.log("[2] 페이지, 문서가 전부 로드된 시점에 실행된다.");
+        }});
+
+        $(window).load(function() {
+            console.log("[3] 페이지, 문서가 전부 로드된 시점에 실행된다.");
+        });
+
+        //실행순서 [1] > [2,3]
+        $(document).on("ready", function(){
+            console.log("[2] document, DOM이 전부 로드된 시점에 실행된다.");
+        });
+
+        $(document).on({ready: function() {
+            console.log("[3] document, DOM이 전부 로드된 시점에 실행된다.");
+        }});
+
+        $(document).ready(function(){
+            console.log("[1] document, DOM이 전부 로드된 시점에 실행된다.");
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Backbone.js riding spa project</title>
+	<link rel="stylesheet" href="css/screen.css">
+</head>
+<body>
+<div id="books">
+	<div class="bookContainer">
+		<img src="img/test_image.png"/>
+		<ul>
+		<li>Title</li>
+		<li>date</li>
+		<li>Keywords</li>
+		</ul>
+	</div>
+	<script id="bookTemplate" type="text/template">
+		<img src="<%= coverImage %> "/>
+		<ul>
+		<li><%= title %></li>
+		<li><%= date %></li>
+		<li><%= keywords %></li>
+		</ul>
+	</script>
+</div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/backbone/backbone-min.js"></script>
+<script src="js/ride.js"></script>
+</body>
+</html>
