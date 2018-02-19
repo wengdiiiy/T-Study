@@ -3,8 +3,6 @@
 *.settings
 *.metadata
 *bin/
-<<<<<<< HEAD
 Servers/
-=======
 .DS_store
->>>>>>> f86a9589d538c5a96dd808708d89d03d9eaec143
+.idea/
